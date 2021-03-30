@@ -25,14 +25,16 @@ type Resource struct {
 	sptty.SimpleModelBase
 
 	ObjectID string `gorm:"size:32" json:"-"`
-	Name     string `json:"name"`
+	Name     string `json:"-"`
 	Mime     string `json:"mime"`
-	Data     []byte `gorm:"-" json:"-"`
+
+	Data    []byte `gorm:"-" json:"-"`
+	NameUrl string `gorm:"-" json:"name"`
 }
 
 func (s *Resource) Serialize(resUrl string) *Resource {
 
-	s.Name = fmt.Sprintf("%s/%s", resUrl, s.Name)
+	s.NameUrl = fmt.Sprintf("%s/%s", resUrl, s.Name)
 	return s
 }
 
