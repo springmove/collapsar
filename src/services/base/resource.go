@@ -27,6 +27,7 @@ type Resource struct {
 	ObjectID string `gorm:"size:32" json:"-"`
 	Name     string `json:"-"`
 	Mime     string `json:"mime"`
+	Tag      string `gorm:"size:32" json:"tag"`
 
 	Data    []byte `gorm:"-" json:"-"`
 	NameUrl string `gorm:"-" json:"name"`

@@ -2,6 +2,7 @@ package resource
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/jinzhu/gorm"
 	"github.com/linshenqi/collapsar/src/services/base"
@@ -53,6 +54,8 @@ func (s *Service) CreateResources(resources []*base.Resource) error {
 
 func (s *Service) createResource(resource *base.Resource) error {
 	resource.ID = sptty.GenerateUID()
+	dt := time.Now().UTC()
+	resource.Created = &dt
 
 	if err := s.saveResource(resource); err != nil {
 		return err
