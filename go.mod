@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/gorilla/websocket v1.4.2 // indirect
+	github.com/huaweicloud/huaweicloud-sdk-go-obs v3.21.1+incompatible
 	github.com/iris-contrib/jade v1.1.4 // indirect
 	github.com/iris-contrib/schema v0.0.2 // indirect
 	github.com/jinzhu/gorm v1.9.12

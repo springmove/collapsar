@@ -4,7 +4,8 @@ import (
 	"errors"
 
 	"github.com/linshenqi/collapsar/src/services/base"
-	"github.com/linshenqi/collapsar/src/services/qiniu"
+	"github.com/linshenqi/collapsar/src/services/oss/vendors/huawei"
+	"github.com/linshenqi/collapsar/src/services/oss/vendors/qiniu"
 	"github.com/linshenqi/sptty"
 )
 
@@ -66,7 +67,8 @@ func (s *Service) getEndpoint(endpoint string) (*base.Endpoint, error) {
 
 func (s *Service) setupProviders() {
 	s.providers = map[string]base.IOss{
-		base.Qiniu: &qiniu.Oss{},
+		base.Qiniu:  &qiniu.Oss{},
+		base.Huawei: &huawei.Oss{},
 	}
 }
 

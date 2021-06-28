@@ -6,7 +6,9 @@ import (
 
 const (
 	ServiceOss = "oss"
-	Qiniu      = "qiniu"
+
+	Qiniu  = "qiniu"
+	Huawei = "huawei"
 )
 
 type IOssService interface {
@@ -20,6 +22,9 @@ type Endpoint struct {
 	AppSecret string `yaml:"app_secret"`
 	Bucket    string `yaml:"bucket"`
 	Zone      string `yaml:"zone"`
+
+	// 终端节点, 用于华为云obs
+	Endpoint string `yaml:"endpoint"`
 }
 
 type IOss interface {
