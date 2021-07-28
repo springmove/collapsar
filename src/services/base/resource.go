@@ -28,6 +28,7 @@ type Resource struct {
 	Name     string `json:"-"`
 	Mime     string `json:"mime"`
 	Tag      string `gorm:"size:32" json:"tag"`
+	Size     uint64 `json:"size"`
 
 	Data    []byte `gorm:"-" json:"-"`
 	NameUrl string `gorm:"-" json:"name"`
@@ -65,6 +66,7 @@ func GetResourcesFromRequestForm(ctx iris.Context) ([]*Resource, error) {
 				Name: sptty.RandomFilename(file.Filename),
 				Mime: mime,
 				Data: buf.Bytes(),
+				Size: uint64(buf.Len()),
 			})
 		}
 	}
