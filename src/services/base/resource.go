@@ -52,7 +52,7 @@ func GetResourcesFromRequestForm(ctx iris.Context) ([]*Resource, error) {
 	form := ctx.Request().MultipartForm
 	resources := []*Resource{}
 	var err error = fmt.Errorf("No File")
-	for _, v := range form.File {
+	for k, v := range form.File {
 		for _, file := range v {
 			src, _ := file.Open()
 			buf := new(bytes.Buffer)
@@ -63,6 +63,7 @@ func GetResourcesFromRequestForm(ctx iris.Context) ([]*Resource, error) {
 
 			mime := file.Header["Content-Type"][0]
 			resources = append(resources, &Resource{
+				Tag:  k,
 				Name: sptty.RandomFilename(file.Filename),
 				Mime: mime,
 				Data: buf.Bytes(),
