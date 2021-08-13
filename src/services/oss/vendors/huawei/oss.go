@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/huaweicloud/huaweicloud-sdk-go-obs/obs"
-	"github.com/linshenqi/collapsar/src/services/base"
+	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/sptty"
 )
 

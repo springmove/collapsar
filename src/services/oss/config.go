@@ -1,6 +1,6 @@
 package oss
 
-import "github.com/linshenqi/collapsar/src/services/base"
+import "github.com/linshenqi/collapsar/src/base"
 
 type Config struct {
 	Endpoints map[string]base.Endpoint `yaml:"endpoints"`

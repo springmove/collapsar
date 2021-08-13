@@ -1,7 +1,7 @@
 package resource
 
 import (
-	"github.com/linshenqi/collapsar/src/services/base"
+	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/sptty"
 )
 

@@ -1,6 +1,6 @@
 package resource
 
-import "github.com/linshenqi/collapsar/src/services/base"
+import "github.com/linshenqi/collapsar/src/base"
 
 func (s *Service) saveResource(resource *base.Resource) error {
 	if err := s.db.Save(resource).Error; err != nil {

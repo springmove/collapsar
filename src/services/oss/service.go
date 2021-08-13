@@ -3,7 +3,7 @@ package oss
 import (
 	"errors"
 
-	"github.com/linshenqi/collapsar/src/services/base"
+	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/huawei"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/qiniu"
 	"github.com/linshenqi/sptty"
