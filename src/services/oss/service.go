@@ -1,7 +1,7 @@
 package oss
 
 import (
-	"errors"
+	"fmt"
 
 	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/huawei"
@@ -51,7 +51,7 @@ func (s *Service) initProviders() {
 func (s *Service) getProvider(providerType string) (base.IOss, error) {
 	provider, exist := s.providers[providerType]
 	if !exist {
-		return nil, errors.New("Provider Not Found ")
+		return nil, fmt.Errorf("Provider Not Found ")
 	}
 
 	return provider, nil
@@ -60,7 +60,7 @@ func (s *Service) getProvider(providerType string) (base.IOss, error) {
 func (s *Service) getEndpoint(endpoint string) (*base.Endpoint, error) {
 	ep, exist := s.cfg.Endpoints[endpoint]
 	if !exist {
-		return nil, errors.New("Endpoint Not Found ")
+		return nil, fmt.Errorf("Endpoint Not Found ")
 	}
 
 	return &ep, nil

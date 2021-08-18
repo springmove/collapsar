@@ -1,7 +1,7 @@
 package base
 
 import (
-	"errors"
+	"fmt"
 )
 
 const (
@@ -45,7 +45,7 @@ func (s *BaseOss) Init() {}
 func (s *BaseOss) GetEndpoint(name string) (*Endpoint, error) {
 	ep, exist := s.Endpoints[name]
 	if !exist {
-		return nil, errors.New("Endpoint Not Found ")
+		return nil, fmt.Errorf("Endpoint Not Found ")
 	}
 
 	return &ep, nil

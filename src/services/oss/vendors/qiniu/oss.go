@@ -3,7 +3,7 @@ package qiniu
 import (
 	"bytes"
 	"context"
-	"errors"
+	"fmt"
 
 	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/sptty"
@@ -32,7 +32,7 @@ type Oss struct {
 func (s *Oss) getZone(zone string) (*storage.Zone, error) {
 	z, exist := Zones[zone]
 	if !exist {
-		return nil, errors.New("Zone Not Found ")
+		return nil, fmt.Errorf("Zone Not Found ")
 	}
 
 	return &z, nil
@@ -73,7 +73,7 @@ func (s *Oss) Upload(endpoint string, key string, data []byte) error {
 
 	client, exist := s.clients[endpoint]
 	if !exist {
-		return errors.New("Client Not Found ")
+		return fmt.Errorf("Client Not Found ")
 	}
 
 	putPolicy := storage.PutPolicy{
@@ -96,7 +96,7 @@ func (s *Oss) Delete(endpoint string, key string) error {
 
 	client, exist := s.clients[endpoint]
 	if !exist {
-		return errors.New("Client Not Found ")
+		return fmt.Errorf("Client Not Found ")
 	}
 
 	return client.Manager.Delete(ep.Bucket, key)
