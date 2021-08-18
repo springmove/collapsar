@@ -3,9 +3,9 @@ package resource
 import (
 	"fmt"
 
-	"github.com/jinzhu/gorm"
 	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/sptty"
+	"gorm.io/gorm"
 )
 
 type Service struct {
