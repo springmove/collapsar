@@ -9,6 +9,7 @@ const (
 
 	Qiniu  = "qiniu"
 	Huawei = "huawei"
+	S3     = "s3"
 )
 
 type IOssService interface {
