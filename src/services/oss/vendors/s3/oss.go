@@ -73,7 +73,7 @@ func (s *Oss) Delete(endpoint string, key string) error {
 	}
 
 	_, err = client.DeleteObject(&s3.DeleteObjectInput{
-		Bucket: &ep.Bucket,
+		Bucket: aws.String(ep.Bucket),
 		Key:    aws.String(key),
 	})
 
@@ -82,4 +82,44 @@ func (s *Oss) Delete(endpoint string, key string) error {
 	}
 
 	return nil
+}
+
+func (s *Oss) ListObjects(endpoint string, token string) ([]string, string, error) {
+	ep, err := s.GetEndpoint(endpoint)
+	if err != nil {
+		return nil, "", err
+	}
+
+	client, exist := s.clients[endpoint]
+	if !exist {
+		return nil, "", fmt.Errorf("Client Not Found ")
+	}
+
+	req := s3.ListObjectsV2Input{
+		Bucket: aws.String(ep.Bucket),
+	}
+
+	if token != "" {
+		req.ContinuationToken = aws.String(token)
+	}
+
+	output, err := client.ListObjectsV2(&req)
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	rt := []string{}
+	for _, v := range output.Contents {
+		if *v.Size > 0 {
+			rt = append(rt, fmt.Sprintf("%s/%s/%s", ep.Endpoint, ep.Bucket, *v.Key))
+		}
+	}
+
+	newToken := ""
+	if output.NextContinuationToken != nil {
+		newToken = *output.NextContinuationToken
+	}
+
+	return rt, newToken, nil
 }

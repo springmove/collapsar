@@ -15,6 +15,7 @@ const (
 type IOssService interface {
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
+	ListObjects(endpoint string, token string) ([]string, string, error)
 }
 
 type Endpoint struct {
@@ -32,11 +33,14 @@ type IOss interface {
 	Init()
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
+	ListObjects(endpoint string, token string) ([]string, string, error)
 	GetEndpoint(name string) (*Endpoint, error)
 	AddEndpoint(name string, endpoint Endpoint)
 }
 
 type BaseOss struct {
+	IOss
+
 	Endpoints map[string]Endpoint
 }
 
@@ -56,4 +60,8 @@ func (s *BaseOss) AddEndpoint(name string, endpoint Endpoint) {
 		s.Endpoints = map[string]Endpoint{}
 	}
 	s.Endpoints[name] = endpoint
+}
+
+func (s *BaseOss) ListObjects(endpoint string, token string) ([]string, string, error) {
+	return nil, "", fmt.Errorf("Not Supported")
 }
