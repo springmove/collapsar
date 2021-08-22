@@ -84,7 +84,7 @@ func (s *Oss) Delete(endpoint string, key string) error {
 	return nil
 }
 
-func (s *Oss) ListObjects(endpoint string, token string) ([]string, string, error) {
+func (s *Oss) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
 	ep, err := s.GetEndpoint(endpoint)
 	if err != nil {
 		return nil, "", err
@@ -97,6 +97,7 @@ func (s *Oss) ListObjects(endpoint string, token string) ([]string, string, erro
 
 	req := s3.ListObjectsV2Input{
 		Bucket: aws.String(ep.Bucket),
+		Prefix: aws.String(prefix),
 	}
 
 	if token != "" {

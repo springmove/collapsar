@@ -102,7 +102,7 @@ func (s *Service) Delete(endpoint string, key string) error {
 	return provider.Delete(endpoint, key)
 }
 
-func (s *Service) ListObjects(endpoint string, token string) ([]string, string, error) {
+func (s *Service) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
 	ep, err := s.getEndpoint(endpoint)
 	if err != nil {
 		return nil, "", err
@@ -113,5 +113,5 @@ func (s *Service) ListObjects(endpoint string, token string) ([]string, string, 
 		return nil, "", err
 	}
 
-	return provider.ListObjects(endpoint, token)
+	return provider.ListObjects(endpoint, prefix, token)
 }

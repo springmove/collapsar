@@ -33,7 +33,7 @@ type IOss interface {
 	Init()
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
-	ListObjects(endpoint string, token string) ([]string, string, error)
+	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
 	GetEndpoint(name string) (*Endpoint, error)
 	AddEndpoint(name string, endpoint Endpoint)
 }
@@ -62,6 +62,6 @@ func (s *BaseOss) AddEndpoint(name string, endpoint Endpoint) {
 	s.Endpoints[name] = endpoint
 }
 
-func (s *BaseOss) ListObjects(endpoint string, token string) ([]string, string, error) {
+func (s *BaseOss) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
 	return nil, "", fmt.Errorf("Not Supported")
 }
