@@ -15,7 +15,7 @@ const (
 type IOssService interface {
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
-	ListObjects(endpoint string, token string) ([]string, string, error)
+	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
 }
 
 type Endpoint struct {
