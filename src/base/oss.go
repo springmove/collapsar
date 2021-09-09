@@ -65,3 +65,8 @@ func (s *BaseOss) AddEndpoint(name string, endpoint Endpoint) {
 func (s *BaseOss) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
 	return nil, "", fmt.Errorf("Not Supported")
 }
+
+type ReqBatchDownload struct {
+	FileName string
+	Key      string
+}

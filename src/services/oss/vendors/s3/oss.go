@@ -37,15 +37,24 @@ func (s *Oss) Init() {
 	}
 }
 
-func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+func (s *Oss) getClient(endpoint string) (*s3.S3, *base.Endpoint, error) {
 	ep, err := s.GetEndpoint(endpoint)
 	if err != nil {
-		return err
+		return nil, nil, err
 	}
 
 	client, exist := s.clients[endpoint]
 	if !exist {
-		return fmt.Errorf("Client Not Found ")
+		return nil, nil, fmt.Errorf("Client Not Found ")
+	}
+
+	return client, ep, nil
+}
+
+func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+	client, ep, err := s.getClient(endpoint)
+	if err != nil {
+		return err
 	}
 
 	_, err = client.PutObject(&s3.PutObjectInput{
@@ -62,14 +71,9 @@ func (s *Oss) Upload(endpoint string, key string, data []byte) error {
 }
 
 func (s *Oss) Delete(endpoint string, key string) error {
-	ep, err := s.GetEndpoint(endpoint)
+	client, ep, err := s.getClient(endpoint)
 	if err != nil {
 		return err
-	}
-
-	client, exist := s.clients[endpoint]
-	if !exist {
-		return fmt.Errorf("Client Not Found ")
 	}
 
 	_, err = client.DeleteObject(&s3.DeleteObjectInput{
@@ -85,14 +89,9 @@ func (s *Oss) Delete(endpoint string, key string) error {
 }
 
 func (s *Oss) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
-	ep, err := s.GetEndpoint(endpoint)
+	client, ep, err := s.getClient(endpoint)
 	if err != nil {
 		return nil, "", err
-	}
-
-	client, exist := s.clients[endpoint]
-	if !exist {
-		return nil, "", fmt.Errorf("Client Not Found ")
 	}
 
 	req := s3.ListObjectsV2Input{
@@ -123,4 +122,19 @@ func (s *Oss) ListObjects(endpoint string, prefix string, token string) ([]strin
 	}
 
 	return rt, newToken, nil
+}
+
+// func (s *Oss) BatchUploadFromFiles(endpoint string, key string, data []byte) error {
+// 	client, _, err := s.getClient(endpoint)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	client.getobj
+// 	return nil
+// }
+
+func (s *Oss) BatchDownloadToFile(endpoint string, req []*base.ReqBatchDownload) error {
+	
+	return nil
 }

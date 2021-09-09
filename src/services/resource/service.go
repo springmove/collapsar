@@ -53,7 +53,7 @@ func (s *Service) CreateResources(resources []*base.Resource) error {
 
 func (s *Service) createResource(resource *base.Resource) error {
 	resource.Init()
-	if err := s.saveResource(resource); err != nil {
+	if err := s.db.Create(resource).Error; err != nil {
 		return err
 	}
 
