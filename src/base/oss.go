@@ -10,12 +10,14 @@ const (
 	Qiniu  = "qiniu"
 	Huawei = "huawei"
 	S3     = "s3"
+	MINIO  = "minio"
 )
 
 type IOssService interface {
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
 	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
+	GetObject(endpoint string, key string) ([]byte, error)
 }
 
 type Endpoint struct {
@@ -36,6 +38,7 @@ type IOss interface {
 	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
 	GetEndpoint(name string) (*Endpoint, error)
 	AddEndpoint(name string, endpoint Endpoint)
+	GetObject(endpoint string, key string) ([]byte, error)
 }
 
 type BaseOss struct {
@@ -64,6 +67,10 @@ func (s *BaseOss) AddEndpoint(name string, endpoint Endpoint) {
 
 func (s *BaseOss) ListObjects(endpoint string, prefix string, token string) ([]string, string, error) {
 	return nil, "", fmt.Errorf("Not Supported")
+}
+
+func (s *BaseOss) GetObject(endpoint string, key string) ([]byte, error) {
+	return nil, fmt.Errorf("Not Supported")
 }
 
 type ReqBatchDownload struct {

@@ -5,6 +5,7 @@ import (
 
 	"github.com/linshenqi/collapsar/src/base"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/huawei"
+	"github.com/linshenqi/collapsar/src/services/oss/vendors/minio"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/qiniu"
 	"github.com/linshenqi/collapsar/src/services/oss/vendors/s3"
 	"github.com/linshenqi/sptty"
@@ -71,6 +72,7 @@ func (s *Service) setupProviders() {
 		base.Qiniu:  &qiniu.Oss{},
 		base.Huawei: &huawei.Oss{},
 		base.S3:     &s3.Oss{},
+		base.MINIO:  &minio.Oss{},
 	}
 }
 
@@ -114,4 +116,18 @@ func (s *Service) ListObjects(endpoint string, prefix string, token string) ([]s
 	}
 
 	return provider.ListObjects(endpoint, prefix, token)
+}
+
+func (s *Service) GetObject(endpoint string, key string) ([]byte, error) {
+	ep, err := s.getEndpoint(endpoint)
+	if err != nil {
+		return nil, err
+	}
+
+	provider, err := s.getProvider(ep.Provider)
+	if err != nil {
+		return nil, err
+	}
+
+	return provider.GetObject(endpoint, key)
 }
