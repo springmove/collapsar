@@ -10,10 +10,10 @@ import (
 
 type Service struct {
 	sptty.BaseService
-	base.IResourceService
+	base.IServiceResource
 
 	db  *gorm.DB
-	oss base.IOssService
+	oss base.IServiceOss
 	cfg Config
 }
 
@@ -33,7 +33,7 @@ func (s *Service) Init(app sptty.ISptty) error {
 		return fmt.Errorf("Model Service Is Required")
 	}
 
-	s.oss = app.GetService(base.ServiceOss).(base.IOssService)
+	s.oss = app.GetService(base.ServiceOss).(base.IServiceOss)
 	if s.oss == nil {
 		return fmt.Errorf("Oss Service Is Required")
 	}
@@ -57,9 +57,9 @@ func (s *Service) createResource(resource *base.Resource) error {
 		return err
 	}
 
-	if err := s.oss.Upload(s.cfg.OssEndpoint, resource.Name, resource.Data); err != nil {
-		return err
-	}
+	// if err := s.oss.Upload(s.cfg.OssEndpoint, resource.Name, resource.Data); err != nil {
+	// 	return err
+	// }
 
 	return nil
 }

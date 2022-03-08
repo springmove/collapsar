@@ -12,7 +12,7 @@ const (
 	ServiceResource = "resource"
 )
 
-type IResourceService interface {
+type IServiceResource interface {
 	CreateResources(resources []*Resource) error
 	RemoveResourcesByIDs(ids []string) error
 	GetResourcesByIDs(ids []string) ([]*Resource, error)

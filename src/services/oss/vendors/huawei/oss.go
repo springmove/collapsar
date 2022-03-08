@@ -75,7 +75,7 @@ func (s *Oss) Delete(endpoint string, key string) error {
 }
 
 func (s *Oss) initClient(endpoint *base.Endpoint) (*obs.ObsClient, error) {
-	obsClient, err := obs.New(endpoint.AppKey, endpoint.AppSecret, endpoint.Endpoint)
+	obsClient, err := obs.New(endpoint.AppID, endpoint.Secret, endpoint.Endpoint)
 	if err != nil {
 		return nil, err
 	}

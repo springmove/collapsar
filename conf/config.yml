@@ -12,7 +12,7 @@ oss:
   endpoints:
     o1:
       provider: qiniu
-      app_key: 123
-      app_secret: 123
+      appid: 123
+      secret: 123
       bucket: res
       zone: huadong

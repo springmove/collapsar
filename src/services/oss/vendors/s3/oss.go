@@ -23,7 +23,7 @@ func (s *Oss) Init() {
 	for name, endpoint := range s.Endpoints {
 		session, err := session.NewSession(&aws.Config{
 			Region:           aws.String(endpoint.Zone),
-			Credentials:      credentials.NewStaticCredentials(endpoint.AppKey, endpoint.AppSecret, ""),
+			Credentials:      credentials.NewStaticCredentials(endpoint.AppID, endpoint.Secret, ""),
 			DisableSSL:       aws.Bool(true),
 			S3ForcePathStyle: aws.Bool(false),
 		})
@@ -135,6 +135,6 @@ func (s *Oss) ListObjects(endpoint string, prefix string, token string) ([]strin
 // }
 
 func (s *Oss) BatchDownloadToFile(endpoint string, req []*base.ReqBatchDownload) error {
-	
+
 	return nil
 }

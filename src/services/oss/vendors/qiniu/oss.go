@@ -53,7 +53,7 @@ func (s *Oss) Init() {
 			UseCdnDomains: false,
 		})
 
-		mac := qbox.NewMac(endpoint.AppKey, endpoint.AppSecret)
+		mac := qbox.NewMac(endpoint.AppID, endpoint.Secret)
 		manager := storage.NewBucketManager(mac, &storage.Config{
 			UseHTTPS: false,
 		})
@@ -80,7 +80,7 @@ func (s *Oss) Upload(endpoint string, key string, data []byte) error {
 		Scope: ep.Bucket,
 	}
 
-	mac := qbox.NewMac(ep.AppKey, ep.AppSecret)
+	mac := qbox.NewMac(ep.AppID, ep.Secret)
 	upToken := putPolicy.UploadToken(mac)
 
 	l := int64(len(data))

@@ -10,11 +10,11 @@ import (
 func getService() *Service {
 	srv := Service{cfg: Config{Endpoints: map[string]base.Endpoint{
 		"asset": {
-			Provider:  base.MINIO,
-			AppKey:    "admin",
-			AppSecret: "",
-			Bucket:    "asset",
-			Endpoint:  "godev.xiji.space:39000",
+			Provider: base.MINIO,
+			AppID:    "admin",
+			Secret:   "",
+			Bucket:   "asset",
+			Endpoint: "godev.xiji.space:39000",
 		},
 	}}}
 

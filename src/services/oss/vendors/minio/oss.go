@@ -22,7 +22,7 @@ func (s *Oss) Init() {
 
 	for name, endpoint := range s.Endpoints {
 		client, err := minio.New(endpoint.Endpoint, &minio.Options{
-			Creds:  credentials.NewStaticV4(endpoint.AppKey, endpoint.AppSecret, ""),
+			Creds:  credentials.NewStaticV4(endpoint.AppID, endpoint.Secret, ""),
 			Secure: false,
 		})
 

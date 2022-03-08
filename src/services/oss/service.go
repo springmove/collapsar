@@ -13,7 +13,7 @@ import (
 
 type Service struct {
 	sptty.BaseService
-	base.IOssService
+	base.IServiceOss
 
 	cfg       Config
 	providers map[string]base.IOss
@@ -130,4 +130,8 @@ func (s *Service) GetObject(endpoint string, key string) ([]byte, error) {
 	}
 
 	return provider.GetObject(endpoint, key)
+}
+
+func (s *Service) GetConfig() map[string]base.Endpoint {
+	return s.cfg.Endpoints
 }

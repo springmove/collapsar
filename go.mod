@@ -11,7 +11,7 @@ require (
 	github.com/kataras/golog v0.0.18 // indirect
 	github.com/kataras/iris/v12 v12.1.8
 	github.com/klauspost/compress v1.10.10 // indirect
-	github.com/linshenqi/sptty v0.1.4
+	github.com/linshenqi/sptty v0.1.5
 	github.com/microcosm-cc/bluemonday v1.0.3 // indirect
 	github.com/minio/minio-go/v7 v7.0.14
 	github.com/qiniu/go-sdk/v7 v7.9.1

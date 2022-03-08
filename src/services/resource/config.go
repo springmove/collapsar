@@ -8,7 +8,7 @@ import (
 type Config struct {
 	sptty.BaseConfig
 	Url         string `yaml:"url"`
-	OssEndpoint string `yaml:"oss_endpoint"`
+	OssEndpoint string `yaml:"ossEndpoint"`
 }
 
 func (s *Config) ConfigName() string {

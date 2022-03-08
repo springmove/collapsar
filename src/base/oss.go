@@ -13,19 +13,20 @@ const (
 	MINIO  = "minio"
 )
 
-type IOssService interface {
+type IServiceOss interface {
 	Upload(endpoint string, key string, data []byte) error
 	Delete(endpoint string, key string) error
 	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
 	GetObject(endpoint string, key string) ([]byte, error)
+	GetConfig() map[string]Endpoint
 }
 
 type Endpoint struct {
-	Provider  string `yaml:"provider"`
-	AppKey    string `yaml:"app_key"`
-	AppSecret string `yaml:"app_secret"`
-	Bucket    string `yaml:"bucket"`
-	Zone      string `yaml:"zone"`
+	Provider string `yaml:"provider"`
+	AppID    string `yaml:"appid"`
+	Secret   string `yaml:"secret"`
+	Bucket   string `yaml:"bucket"`
+	Zone     string `yaml:"zone"`
 
 	// 终端节点, 用于华为云obs
 	Endpoint string `yaml:"endpoint"`
