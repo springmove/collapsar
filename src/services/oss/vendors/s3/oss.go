@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/linshenqi/collapsar/src/base"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/sptty"
 )
 
 type Oss struct {

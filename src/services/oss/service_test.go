@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/linshenqi/collapsar/src/base"
+	"github.com/springmove/collapsar/src/base"
 )
 
 func getService() *Service {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/kataras/iris/v12"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/sptty"
 )
 
 const (

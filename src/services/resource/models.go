@@ -1,6 +1,6 @@
 package resource
 
-import "github.com/linshenqi/collapsar/src/base"
+import "github.com/springmove/collapsar/src/base"
 
 func (s *Service) getResourcesByIDs(ids []string) ([]*base.Resource, error) {
 	resources := []*base.Resource{}

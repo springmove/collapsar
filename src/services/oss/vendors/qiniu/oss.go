@@ -5,8 +5,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/linshenqi/collapsar/src/base"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/sptty"
 	"github.com/qiniu/go-sdk/v7/auth/qbox"
 	"github.com/qiniu/go-sdk/v7/storage"
 )

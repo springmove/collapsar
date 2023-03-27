@@ -3,8 +3,8 @@ package resource
 import (
 	"fmt"
 
-	"github.com/linshenqi/collapsar/src/base"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/sptty"
 	"gorm.io/gorm"
 )
 

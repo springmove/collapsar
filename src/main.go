@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 
-	"github.com/linshenqi/collapsar/src/services/oss"
-	"github.com/linshenqi/collapsar/src/services/resource"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/collapsar/src/services/oss"
+	"github.com/springmove/collapsar/src/services/resource"
+	"github.com/springmove/sptty"
 )
 
 func main() {

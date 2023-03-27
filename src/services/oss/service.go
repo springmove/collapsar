@@ -3,12 +3,12 @@ package oss
 import (
 	"fmt"
 
-	"github.com/linshenqi/collapsar/src/base"
-	"github.com/linshenqi/collapsar/src/services/oss/vendors/huawei"
-	"github.com/linshenqi/collapsar/src/services/oss/vendors/minio"
-	"github.com/linshenqi/collapsar/src/services/oss/vendors/qiniu"
-	"github.com/linshenqi/collapsar/src/services/oss/vendors/s3"
-	"github.com/linshenqi/sptty"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/collapsar/src/services/oss/vendors/huawei"
+	"github.com/springmove/collapsar/src/services/oss/vendors/minio"
+	"github.com/springmove/collapsar/src/services/oss/vendors/qiniu"
+	"github.com/springmove/collapsar/src/services/oss/vendors/s3"
+	"github.com/springmove/sptty"
 )
 
 type Service struct {
