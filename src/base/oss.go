@@ -14,7 +14,8 @@ const (
 )
 
 type IServiceOss interface {
-	Upload(endpoint string, key string, data []byte) error
+	Upload(endpoint string, key string, data []byte, opt ...interface{}) error
+	UploadFromFile(endpoint string, key string, filepath string, opt ...interface{}) error
 	Delete(endpoint string, key string) error
 	ListObjects(endpoint string, prefix string, token string) ([]string, string, error)
 	GetObject(endpoint string, key string) ([]byte, error)
