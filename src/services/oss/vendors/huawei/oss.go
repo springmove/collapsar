@@ -27,7 +27,7 @@ func (s *Oss) Init() {
 	}
 }
 
-func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+func (s *Oss) Upload(endpoint string, key string, data []byte, opt ...interface{}) error {
 	ep, err := s.GetEndpoint(endpoint)
 	if err != nil {
 		return err

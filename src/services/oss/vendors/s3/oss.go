@@ -51,7 +51,7 @@ func (s *Oss) getClient(endpoint string) (*s3.S3, *base.Endpoint, error) {
 	return client, ep, nil
 }
 
-func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+func (s *Oss) Upload(endpoint string, key string, data []byte, opt ...interface{}) error {
 	client, ep, err := s.getClient(endpoint)
 	if err != nil {
 		return err

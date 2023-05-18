@@ -5,10 +5,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/springmove/collapsar/src/base"
-	"github.com/springmove/sptty"
 	"github.com/qiniu/go-sdk/v7/auth/qbox"
 	"github.com/qiniu/go-sdk/v7/storage"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/sptty"
 )
 
 var Zones = map[string]storage.Zone{
@@ -65,7 +65,7 @@ func (s *Oss) Init() {
 	}
 }
 
-func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+func (s *Oss) Upload(endpoint string, key string, data []byte, opt ...interface{}) error {
 	ep, err := s.GetEndpoint(endpoint)
 	if err != nil {
 		return err

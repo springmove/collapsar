@@ -76,7 +76,7 @@ func (s *Service) setupProviders() {
 	}
 }
 
-func (s *Service) Upload(endpoint string, key string, data []byte) error {
+func (s *Service) Upload(endpoint string, key string, data []byte, opt ...interface{}) error {
 	ep, err := s.getEndpoint(endpoint)
 	if err != nil {
 		return err
@@ -87,7 +87,21 @@ func (s *Service) Upload(endpoint string, key string, data []byte) error {
 		return err
 	}
 
-	return provider.Upload(endpoint, key, data)
+	return provider.Upload(endpoint, key, data, opt...)
+}
+
+func (s *Service) UploadFromFile(endpoint string, key string, filepath string, opt ...interface{}) error {
+	ep, err := s.getEndpoint(endpoint)
+	if err != nil {
+		return err
+	}
+
+	provider, err := s.getProvider(ep.Provider)
+	if err != nil {
+		return err
+	}
+
+	return provider.UploadFromFile(endpoint, key, filepath, opt...)
 }
 
 func (s *Service) Delete(endpoint string, key string) error {

@@ -5,10 +5,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/springmove/collapsar/src/base"
-	"github.com/springmove/sptty"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
+	"github.com/springmove/collapsar/src/base"
+	"github.com/springmove/sptty"
 )
 
 type Oss struct {
@@ -23,7 +23,7 @@ func (s *Oss) Init() {
 	for name, endpoint := range s.Endpoints {
 		client, err := minio.New(endpoint.Endpoint, &minio.Options{
 			Creds:  credentials.NewStaticV4(endpoint.AppID, endpoint.Secret, ""),
-			Secure: false,
+			Secure: endpoint.SSL,
 		})
 
 		if err != nil {
@@ -49,7 +49,7 @@ func (s *Oss) getClient(endpoint string) (*minio.Client, *base.Endpoint, error) 
 	return client, ep, nil
 }
 
-func (s *Oss) Upload(endpoint string, key string, data []byte) error {
+func (s *Oss) Upload(endpoint string, key string, data []byte, opt ...interface{}) error {
 	client, ep, err := s.getClient(endpoint)
 	if err != nil {
 		return err
@@ -57,7 +57,33 @@ func (s *Oss) Upload(endpoint string, key string, data []byte) error {
 
 	ctx := context.Background()
 
-	_, err = client.PutObject(ctx, ep.Bucket, key, bytes.NewReader(data), int64(len(data)), minio.PutObjectOptions{})
+	o := minio.PutObjectOptions{}
+	if len(opt) > 0 {
+		o = opt[0].(minio.PutObjectOptions)
+	}
+
+	_, err = client.PutObject(ctx, ep.Bucket, key, bytes.NewReader(data), int64(len(data)), o)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *Oss) UploadFromFile(endpoint string, key string, filepath string, opt ...interface{}) error {
+	client, ep, err := s.getClient(endpoint)
+	if err != nil {
+		return err
+	}
+
+	ctx := context.Background()
+
+	o := minio.PutObjectOptions{}
+	if len(opt) > 0 {
+		o = opt[0].(minio.PutObjectOptions)
+	}
+
+	_, err = client.FPutObject(ctx, ep.Bucket, key, filepath, o)
 	if err != nil {
 		return err
 	}
